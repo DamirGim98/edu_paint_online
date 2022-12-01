@@ -1,0 +1,32 @@
+@import "./variables";
+
+
+.toolbar {
+  height: $toolbar-height;
+  padding: 0 40px;
+  background-color: $toolbar-color;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 10px 50px $toolbar-shadow-color;
+
+  &__btn {
+    color: white;
+    font-size: 25px;
+
+    cursor: pointer;
+  }
+  &__color {
+    width: 25px;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  &__undo {
+    margin-left: auto;
+  }
+}
