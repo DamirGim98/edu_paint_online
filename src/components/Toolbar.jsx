@@ -40,6 +40,16 @@ const Toolbar = () => {
     toolState.setStrokeColor(event.target.value)
   }
 
+  const downloadImage = () => {
+    const dataUrl = canvasState.canvas.toDataURL()
+    const a = document.createElement('a')
+    a.href = dataUrl
+    a.download = 'NewImage.jpg'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
   return (
     <div className="toolbar">
       {Icons.map((icon, index) => {
@@ -67,7 +77,7 @@ const Toolbar = () => {
         onClick={() => canvasState.redo()}
         className="toolbar__btn"
       />
-      <SaveOutlined className="toolbar__btn" />
+      <SaveOutlined onClick={downloadImage} className="toolbar__btn" />
     </div>
   )
 }
