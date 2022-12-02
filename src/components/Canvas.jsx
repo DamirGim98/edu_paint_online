@@ -5,6 +5,7 @@ import WebSocketApi from '../store/WebSocketApi'
 import canvasState from '../store/canvasState'
 import toolState from '../store/toolState'
 import Brush from '../tools/Brush'
+import Rectangle from '../tools/Rectangle'
 
 const Canvas = observer(() => {
   const canvasRef = useRef()
@@ -14,10 +15,20 @@ const Canvas = observer(() => {
     const ctx = canvasRef.current.getContext('2d')
     switch (figure.type) {
       case 'brush':
-        Brush.draw(ctx, figure.x, figure.y)
+        Brush.draw(ctx, figure.x, figure.y, figure.color, figure.width)
         break
       case 'finish':
         ctx.beginPath()
+        break
+      case 'rectangle':
+        Rectangle.staticDraw(
+          ctx,
+          figure.x,
+          figure.y,
+          figure.width,
+          figure.height,
+          figure.color
+        )
         break
       default:
         break
