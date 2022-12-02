@@ -14,11 +14,25 @@
   box-shadow: 0 10px 50px $toolbar-shadow-color;
 
   &__btn {
+    background: none;
+    border: none;
+    padding: 0;
+
     color: white;
     font-size: 25px;
 
     cursor: pointer;
+    &:hover, &:active {
+      transition: 0.5s;
+      transform: scale(1.2);
+      color: darkgoldenrod;
+    }
+
+    &.pressed {
+      color: darkgoldenrod;
+    }
   }
+
   &__color {
     width: 25px;
     background: none;
