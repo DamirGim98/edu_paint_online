@@ -1,0 +1,15 @@
+@import "./variables";
+
+.slider-wrapper {
+  width: 25%;
+  display: flex;
+}
+
+.slider__selector {
+  width: 100px;
+}
+
+.slider__number {
+  width: 40px;
+  height: 30px;
+}

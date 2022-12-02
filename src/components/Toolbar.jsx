@@ -16,6 +16,9 @@ import toolCreators from '../helpers/toolCreators'
 
 import '../styles/toolbar.scss'
 import Button from './UI/Button'
+import WidthSlider from './UI/WidthSlider'
+import toolState from '../store/toolState'
+import canvasState from '../store/canvasState'
 
 const Icons = [
   <EditOutlined />,
@@ -32,6 +35,11 @@ const Toolbar = () => {
     callback()
   }
 
+  const handleColorChange = (event) => {
+    toolState.setFillColor(event.target.value)
+    toolState.setStrokeColor(event.target.value)
+  }
+
   return (
     <div className="toolbar">
       {Icons.map((icon, index) => {
@@ -45,9 +53,20 @@ const Toolbar = () => {
           </Button>
         )
       })}
-      <input className="toolbar__color" type="color" />
-      <UndoOutlined className="toolbar__btn toolbar__undo" />
-      <RedoOutlined className="toolbar__btn" />
+      <input
+        onChange={handleColorChange}
+        className="toolbar__color"
+        type="color"
+      />
+      <WidthSlider />
+      <UndoOutlined
+        onClick={() => canvasState.undo()}
+        className="toolbar__btn toolbar__undo"
+      />
+      <RedoOutlined
+        onClick={() => canvasState.redo()}
+        className="toolbar__btn"
+      />
       <SaveOutlined className="toolbar__btn" />
     </div>
   )
