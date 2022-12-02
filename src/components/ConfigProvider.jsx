@@ -2,7 +2,6 @@ import React from 'react'
 import { ConfigProvider } from 'antd'
 import PropTypes from 'prop-types'
 
-// eslint-disable-next-line react/prop-types
 const StylesOverrideProvider = ({ children }) => {
   return (
     <ConfigProvider
@@ -17,8 +16,7 @@ const StylesOverrideProvider = ({ children }) => {
   )
 }
 
-// eslint-disable-next-line react/no-typos
-StylesOverrideProvider.PropTypes = {
+StylesOverrideProvider.propTypes = {
   children: PropTypes.element.isRequired,
 }
 
