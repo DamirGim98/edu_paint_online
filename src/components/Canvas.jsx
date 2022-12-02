@@ -9,7 +9,20 @@ import Brush from '../tools/Brush'
 const Canvas = observer(() => {
   const canvasRef = useRef()
 
-  const drawHandler = () => {}
+  const drawHandler = (message) => {
+    const { figure } = message
+    const ctx = canvasRef.current.getContext('2d')
+    switch (figure.type) {
+      case 'brush':
+        Brush.draw(ctx, figure.x, figure.y)
+        break
+      case 'finish':
+        ctx.beginPath()
+        break
+      default:
+        break
+    }
+  }
 
   WebSocketApi.getSocket.onmessage = (event) => {
     const msg = JSON.parse(event.data)
