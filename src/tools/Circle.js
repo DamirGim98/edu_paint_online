@@ -39,6 +39,7 @@ export default class Circle extends Tool {
   draw(x, y, r) {
     const img = new Image()
     img.src = this.saved
+    // eslint-disable-next-line func-names
     img.onload = async function () {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
       this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
