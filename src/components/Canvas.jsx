@@ -6,6 +6,8 @@ import canvasState from '../store/canvasState'
 import toolState from '../store/toolState'
 import Brush from '../tools/Brush'
 import Rectangle from '../tools/Rectangle'
+import Eraser from '../tools/Eraser'
+import Circle from '../tools/Circle'
 
 const Canvas = observer(() => {
   const canvasRef = useRef()
@@ -29,6 +31,12 @@ const Canvas = observer(() => {
           figure.height,
           figure.color
         )
+        break
+      case 'eraser':
+        Eraser.draw(ctx, figure.x, figure.y, figure.color, figure.width)
+        break
+      case 'circle':
+        Circle.staticDraw(ctx, figure.x, figure.y, figure.r, figure.color)
         break
       default:
         break

@@ -23,6 +23,19 @@ export default class Circle extends Tool {
 
   mouseUpHandler() {
     this.mouseDown = false
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        id: this.socket.getSessionId,
+        figure: {
+          type: 'circle',
+          x: this.startX,
+          y: this.startY,
+          r: this.r,
+          color: this.ctx.fillStyle,
+        },
+      })
+    )
   }
 
   mouseMoveHandler(e) {
@@ -31,22 +44,30 @@ export default class Circle extends Tool {
       const curentY = e.pageY - e.target.offsetTop
       const width = curentX - this.startX
       const height = curentY - this.startY
-      const r = Math.sqrt(width ** 2 + height ** 2)
-      this.draw(this.startX, this.startY, r)
+      this.r = Math.sqrt(width ** 2 + height ** 2)
+      this.draw(this.startX, this.startY, this.r)
     }
   }
 
   draw(x, y, r) {
     const img = new Image()
     img.src = this.saved
-    // eslint-disable-next-line func-names
-    img.onload = async function () {
+    img.onload = () => {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
       this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
       this.ctx.beginPath()
       this.ctx.arc(x, y, r, 0, 2 * Math.PI)
       this.ctx.fill()
       this.ctx.stroke()
-    }.bind(this)
+    }
+  }
+
+  static staticDraw(ctx, x, y, r, color) {
+    ctx.fillStyle = color
+    ctx.strokeStyle = color
+    ctx.beginPath()
+    ctx.arc(x, y, r, 0, 2 * Math.PI)
+    ctx.fill()
+    ctx.stroke()
   }
 }
