@@ -1,13 +1,14 @@
 import './styles/app.scss'
-import Toolbar from './components/Toolbar'
-import Canvas from './components/Canvas'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
+import CanvasPage from './pages/CanvasPage'
 
 const App = () => {
   return (
-    <div className="App">
-      <Toolbar />
-      <Canvas />
-    </div>
+    <Routes>
+      <Route index element={<Navigate replace to={`${uuid()}`} />} />
+      <Route path="/:id" element={<CanvasPage />} />
+    </Routes>
   )
 }
 
