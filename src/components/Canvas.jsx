@@ -46,10 +46,6 @@ const Canvas = observer(() => {
   WebSocketApi.getSocket.onmessage = (event) => {
     const msg = JSON.parse(event.data)
     switch (msg.method) {
-      case 'connection':
-        // eslint-disable-next-line no-console
-        console.log(`User ${msg.username} connected`)
-        break
       case 'draw':
         drawHandler(msg)
         break

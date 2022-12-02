@@ -15,8 +15,6 @@ const UsernameModal = () => {
     WebSocketApi.setUsername = username
     WebSocketApi.sessionId = id
     WebSocketApi.getSocket.onopen = () => {
-      // eslint-disable-next-line no-console
-      console.log('Connection established')
       WebSocketApi.getSocket.send(
         JSON.stringify({
           id,
