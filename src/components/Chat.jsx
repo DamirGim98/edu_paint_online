@@ -3,23 +3,11 @@ import '../styles/chat.scss'
 import { v4 as uuid } from 'uuid'
 import { observer } from 'mobx-react-lite'
 import WebSocketApi from '../store/WebSocketApi'
+import SendMessageForm from './UI/SendMessageForm'
 
 const Chat = observer(() => {
-  const [text, setText] = useState('')
   const [messages, setMessages] = useState([])
   const username = WebSocketApi.getUsername
-
-  const handleSubmit = () => {
-    WebSocketApi.getSocket.send(
-      JSON.stringify({
-        method: 'text',
-        id: WebSocketApi.getSessionId,
-        username,
-        text,
-      })
-    )
-    setText('')
-  }
 
   WebSocketApi.getSocket.addEventListener('message', (event) => {
     const msg = JSON.parse(event.data)
@@ -56,18 +44,7 @@ const Chat = observer(() => {
           </div>
         ))}
       </div>
-      <div className="chat__controls">
-        <input
-          type="text"
-          value={text}
-          className="chat__input"
-          onChange={(e) => setText(e.target.value)}
-        />
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button onClick={handleSubmit} type="button" className="chat__button">
-          Send
-        </button>
-      </div>
+      <SendMessageForm />
     </div>
   )
 })
