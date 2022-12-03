@@ -19,6 +19,7 @@ import Button from './UI/Button'
 import WidthSlider from './UI/WidthSlider'
 import toolState from '../store/toolState'
 import canvasState from '../store/canvasState'
+import CopyToClipboard from './UI/CopyToClipboard'
 
 const Icons = [
   <EditOutlined />,
@@ -69,9 +70,10 @@ const Toolbar = () => {
         type="color"
       />
       <WidthSlider />
+      <CopyToClipboard />
       <UndoOutlined
         onClick={() => canvasState.undo()}
-        className="toolbar__btn toolbar__undo"
+        className="toolbar__btn"
       />
       <RedoOutlined
         onClick={() => canvasState.redo()}

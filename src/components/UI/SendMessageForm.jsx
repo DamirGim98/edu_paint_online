@@ -6,9 +6,16 @@ import '../../styles/sendMessage.scss'
 const SendMessageForm = () => {
   const [text, setText] = useState('')
 
+  const addZero = (i) => {
+    if (i < 10) {
+      return `0${i}`
+    }
+    return i
+  }
+
   const handleSubmit = (e) => {
     let time = new Date()
-    time = `${time.getHours()}:${time.getMinutes()}`
+    time = `${time.getHours()}:${addZero(time.getMinutes())}`
     e.preventDefault()
     WebSocketApi.getSocket.send(
       JSON.stringify({
