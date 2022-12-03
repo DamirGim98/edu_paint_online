@@ -51,10 +51,15 @@ export default class Brush extends Tool {
   }
 
   static draw(ctx, x, y, color, width) {
+    const prevColor = ctx.fillStyle
+    const prevWidth = ctx.lineWidth
     ctx.fillStyle = color
     ctx.strokeStyle = color
     ctx.lineWidth = width
     ctx.lineTo(x, y)
     ctx.stroke()
+    ctx.fillStyle = prevColor
+    ctx.strokeStyle = prevColor
+    ctx.lineWidth = prevWidth
   }
 }

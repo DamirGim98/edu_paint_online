@@ -71,11 +71,16 @@ export default class Rectangle extends Tool {
   }
 
   static staticDraw(ctx, x, y, w, h, color) {
+    const prevColor = ctx.fillStyle
+    const prevWidth = ctx.lineWidth
     ctx.fillStyle = color
     ctx.strokeStyle = color
     ctx.beginPath()
     ctx.rect(x, y, w, h)
     ctx.fill()
     ctx.stroke()
+    ctx.fillStyle = prevColor
+    ctx.strokeStyle = prevColor
+    ctx.lineWidth = prevWidth
   }
 }

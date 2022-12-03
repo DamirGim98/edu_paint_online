@@ -8,6 +8,7 @@ import Brush from '../tools/Brush'
 import Rectangle from '../tools/Rectangle'
 import Eraser from '../tools/Eraser'
 import Circle from '../tools/Circle'
+import LineTo from '../tools/LineTo'
 
 const Canvas = observer(() => {
   const canvasRef = useRef()
@@ -38,13 +39,25 @@ const Canvas = observer(() => {
       case 'circle':
         Circle.staticDraw(ctx, figure.x, figure.y, figure.r, figure.color)
         break
+      case 'line':
+        LineTo.staticDraw(
+          ctx,
+          figure.startX,
+          figure.startY,
+          figure.x,
+          figure.y,
+          figure.color,
+          figure.width
+        )
+        break
       default:
         break
     }
   }
 
-  WebSocketApi.getSocket.onmessage = (event) => {
+  WebSocketApi.getSocket.addEventListener('message', (event) => {
     const msg = JSON.parse(event.data)
+    console.log(msg.data)
     switch (msg.method) {
       case 'draw':
         drawHandler(msg)
@@ -52,7 +65,7 @@ const Canvas = observer(() => {
       default:
         break
     }
-  }
+  })
 
   useEffect(() => {
     canvasState.setCanvas(canvasRef.current)

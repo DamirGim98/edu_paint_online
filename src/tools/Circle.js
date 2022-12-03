@@ -63,11 +63,16 @@ export default class Circle extends Tool {
   }
 
   static staticDraw(ctx, x, y, r, color) {
+    const prevColor = ctx.fillStyle
+    const prevWidth = ctx.lineWidth
     ctx.fillStyle = color
     ctx.strokeStyle = color
     ctx.beginPath()
     ctx.arc(x, y, r, 0, 2 * Math.PI)
     ctx.fill()
     ctx.stroke()
+    ctx.fillStyle = prevColor
+    ctx.strokeStyle = prevColor
+    ctx.lineWidth = prevWidth
   }
 }

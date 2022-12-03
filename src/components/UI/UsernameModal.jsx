@@ -13,7 +13,7 @@ const UsernameModal = () => {
   const handleUsernameSubmit = () => {
     const username = usernameRef.current.input.value
     WebSocketApi.setUsername = username
-    WebSocketApi.sessionId = id
+    WebSocketApi.setSessionId = id
     WebSocketApi.getSocket.onopen = () => {
       WebSocketApi.getSocket.send(
         JSON.stringify({

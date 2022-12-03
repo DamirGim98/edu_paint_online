@@ -12,8 +12,32 @@ export default class LineTo extends Tool {
     this.canvas.onmouseup = this.mouseUpHandler.bind(this)
   }
 
-  mouseUpHandler() {
+  mouseUpHandler(e) {
     this.mouseDown = false
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        id: this.socket.getSessionId,
+        figure: {
+          type: 'line',
+          startX: this.startX,
+          startY: this.startY,
+          x: e.pageX - e.target.offsetLeft,
+          y: e.pageY - e.target.offsetTop,
+          color: this.ctx.fillStyle,
+          width: this.ctx.lineWidth,
+        },
+      })
+    )
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        id: this.socket.getSessionId,
+        figure: {
+          type: 'finish',
+        },
+      })
+    )
   }
 
   mouseDownHandler(e) {
@@ -42,5 +66,20 @@ export default class LineTo extends Tool {
       this.ctx.lineTo(x, y)
       this.ctx.stroke()
     }
+  }
+
+  static staticDraw(ctx, startX, startY, x, y, color, width) {
+    const prevColor = ctx.fillStyle
+    const prevWidth = ctx.lineWidth
+    ctx.fillStyle = color
+    ctx.strokeStyle = color
+    ctx.lineWidth = width
+    ctx.moveTo(startX, startY)
+    ctx.beginPath()
+    ctx.lineTo(x, y)
+    ctx.stroke()
+    ctx.fillStyle = prevColor
+    ctx.strokeStyle = prevColor
+    ctx.lineWidth = prevWidth
   }
 }

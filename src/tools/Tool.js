@@ -11,9 +11,6 @@ export default class Tool {
 
   set fillColor(color) {
     this.ctx.fillStyle = color
-  }
-
-  set strokeColor(color) {
     this.ctx.strokeStyle = color
   }
 

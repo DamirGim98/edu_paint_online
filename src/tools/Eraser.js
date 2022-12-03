@@ -24,11 +24,13 @@ export default class Eraser extends Brush {
     }
   }
 
-  static draw(ctx, x, y, width) {
-    ctx.fillStyle = 'white'
-    ctx.strokeStyle = 'white'
-    ctx.lineWidth = width
+  static draw(ctx, x, y, color, width) {
+    const prevWidth = ctx.lineWidth
+    ctx.fillStyle('white')
+    ctx.strokeStyle('white')
+    ctx.lineWidth(width)
     ctx.lineTo(x, y)
     ctx.stroke()
+    ctx.lineWidth = prevWidth
   }
 }
