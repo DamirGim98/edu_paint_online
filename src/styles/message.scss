@@ -1,0 +1,30 @@
+.message {
+  position: relative;
+  margin-top: auto;
+  margin-left: auto;
+  margin-bottom: 6px;
+  height: fit-content;
+  word-wrap: break-word;
+  width: fit-content;
+  max-width: 70%;
+  padding: 10px 30px 18px 10px;
+  background-color: rgba(42,47,51,255);
+
+  color: white;
+  border-radius: 20px 15px 0 20px;
+
+  &-from {
+    @extend .message;
+    margin-left: unset;
+    margin-right: auto;
+    background-color: rgba(51,57,63,255);
+    border-radius: 20px 20px 20px 0;
+  }
+  &__time {
+    position: absolute;
+    font-size: 9px;
+    color: white;
+    bottom: 5px;
+    right: 8px;
+  }
+}

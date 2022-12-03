@@ -24,41 +24,5 @@
       display: none;
     }
   }
-
-  &__message {
-    animation-name: sliding;
-    animation-iteration-count: 1;
-    animation-duration: 1s;
-    margin-top: auto;
-    margin-left: auto;
-    margin-bottom: 6px;
-    height: fit-content;
-    word-wrap: break-word;
-    width: fit-content;
-    max-width: 70%;
-    padding: 10px 15px;
-    background-color: rgba(42,47,51,255);
-
-    color: white;
-    border-radius: 20px 15px 0 20px;
-
-    &_from {
-      margin-left: unset;
-      margin-right: auto;
-      background-color: rgba(51,57,63,255);
-      border-radius: 20px 20px 20px 0;
-    }
-  }
 }
 
-@keyframes sliding {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}

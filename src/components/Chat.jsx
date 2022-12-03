@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 import { observer } from 'mobx-react-lite'
 import WebSocketApi from '../store/WebSocketApi'
 import SendMessageForm from './UI/SendMessageForm'
+import Message from './UI/Message'
 
 const Chat = observer(() => {
   const [messages, setMessages] = useState([])
@@ -11,11 +12,9 @@ const Chat = observer(() => {
 
   WebSocketApi.getSocket.addEventListener('message', (event) => {
     const msg = JSON.parse(event.data)
-    // eslint-disable-next-line no-shadow
-    const { text, username } = msg
     switch (msg.method) {
       case 'text':
-        setMessages([...messages, { text, username }])
+        setMessages([...messages, msg])
         break
       default:
         break
@@ -32,16 +31,7 @@ const Chat = observer(() => {
           }}
         />
         {messages.map((message) => (
-          <div
-            key={`${uuid()}`}
-            className={
-              message.username === username
-                ? `chat__message`
-                : `chat__message chat__message_from`
-            }
-          >
-            {message.text}
-          </div>
+          <Message username={username} message={message} key={`${uuid()}`} />
         ))}
       </div>
       <SendMessageForm />
