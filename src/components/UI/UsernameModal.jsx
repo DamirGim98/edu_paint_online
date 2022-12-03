@@ -27,7 +27,9 @@ const UsernameModal = () => {
     setOpen(false)
   }
 
-  useEffect(() => {})
+  useEffect(() => {
+    usernameRef.current.focus()
+  })
 
   return (
     <Modal
