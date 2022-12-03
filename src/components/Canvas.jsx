@@ -15,6 +15,9 @@ const Canvas = observer(() => {
 
   const drawHandler = (message) => {
     const { figure } = message
+    if (!canvasRef.current) {
+      return
+    }
     const ctx = canvasRef.current.getContext('2d')
     switch (figure.type) {
       case 'brush':
@@ -57,7 +60,6 @@ const Canvas = observer(() => {
 
   WebSocketApi.getSocket.addEventListener('message', (event) => {
     const msg = JSON.parse(event.data)
-    console.log(msg.data)
     switch (msg.method) {
       case 'draw':
         drawHandler(msg)
