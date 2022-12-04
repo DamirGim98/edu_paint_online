@@ -7,6 +7,16 @@ class WebSocketApi {
 
   sessionId = null
 
+  guest = false
+
+  set setGuest(boolean) {
+    this.guest = boolean
+  }
+
+  get getGuest() {
+    return this.guest
+  }
+
   get getSocket() {
     if (!this.socket) {
       this.socket = new WebSocket(process.env.REACT_APP_URL)

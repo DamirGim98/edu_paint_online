@@ -1,30 +1,37 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Modal, Input } from 'antd'
+import { Modal, Input, Form, Checkbox, Button } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import WebSocketApi from '../../store/WebSocketApi'
 import Methods from '../../helpers/Connections'
 
 const UsernameModal = () => {
   const usernameRef = useRef(null)
+  const [form] = Form.useForm()
   const [open, setOpen] = useState(true)
+  const [isGuest, setIsGuest] = useState(false)
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const handleUsernameSubmit = () => {
-    const username = usernameRef.current.input.value
-    WebSocketApi.setUsername = username
+  const handleSubmit = () => {
+    const values = form.getFieldsValue()
+    WebSocketApi.setUsername = values.username
     WebSocketApi.setSessionId = id
     WebSocketApi.getSocket.onopen = () => {
       WebSocketApi.getSocket.send(
         JSON.stringify({
           id,
-          username,
+          username: values.username,
           method: Methods.connection,
         })
       )
     }
     navigate('canvas')
     setOpen(false)
+  }
+
+  const handleCheckbox = () => {
+    setIsGuest(!isGuest)
+    WebSocketApi.setGuest = !isGuest
   }
 
   useEffect(() => {
@@ -36,12 +43,39 @@ const UsernameModal = () => {
       title="Enter your username"
       centered
       open={open}
-      onOk={handleUsernameSubmit}
       onCancel={() => setOpen(false)}
       width={300}
       destroyOnClose
+      footer={[]}
     >
-      <Input ref={usernameRef} />
+      <Form
+        form={form}
+        layout="vertical"
+        size="middle"
+        style={{ paddingTop: '20px' }}
+      >
+        <Form.Item name="username">
+          <Input ref={usernameRef} placeholder="Username" />
+        </Form.Item>
+        <Form.Item name="guest" valuePropName="checked">
+          <Checkbox onChange={handleCheckbox}>
+            I want to join existing session
+          </Checkbox>
+        </Form.Item>
+        {isGuest && (
+          <Form.Item name="id">
+            <Input placeholder="Enter session id" />
+          </Form.Item>
+        )}
+        <Form.Item
+          wrapperCol={{ offset: 15, span: 16 }}
+          style={{ marginBottom: '0px' }}
+        >
+          <Button onClick={handleSubmit} type="primary">
+            Lets Draw!
+          </Button>
+        </Form.Item>
+      </Form>
     </Modal>
   )
 }
