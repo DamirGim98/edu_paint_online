@@ -20,6 +20,7 @@ import WidthSlider from './UI/WidthSlider'
 import toolState from '../store/toolState'
 import canvasState from '../store/canvasState'
 import CopyToClipboard from './UI/CopyToClipboard'
+import WebSocketApi from '../store/WebSocketApi'
 
 const Icons = [
   <EditOutlined />,
@@ -70,7 +71,8 @@ const Toolbar = () => {
         type="color"
       />
       <WidthSlider />
-      <CopyToClipboard />
+      <div className="toolbar__divider" />
+      {!WebSocketApi.getGuest && <CopyToClipboard />}
       <UndoOutlined
         onClick={() => canvasState.undo()}
         className="toolbar__btn"

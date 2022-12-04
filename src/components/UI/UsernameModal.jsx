@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { v4 as uuid } from 'uuid'
 import { Modal, Input, Form, Checkbox, Button } from 'antd'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import WebSocketApi from '../../store/WebSocketApi'
 import Methods from '../../helpers/Connections'
 
@@ -9,12 +10,17 @@ const UsernameModal = () => {
   const [form] = Form.useForm()
   const [open, setOpen] = useState(true)
   const [isGuest, setIsGuest] = useState(false)
-  const { id } = useParams()
   const navigate = useNavigate()
 
   const handleSubmit = () => {
+    let id
     const values = form.getFieldsValue()
     WebSocketApi.setUsername = values.username
+    if (!isGuest) {
+      id = uuid()
+    } else {
+      id = values.id
+    }
     WebSocketApi.setSessionId = id
     WebSocketApi.getSocket.onopen = () => {
       WebSocketApi.getSocket.send(
