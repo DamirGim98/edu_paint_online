@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
 import { Modal, Input, Form, Checkbox, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 import WebSocketApi from '../../store/WebSocketApi'
 import Methods from '../../helpers/Connections'
 
-const UsernameModal = () => {
+const UsernameModal = observer(() => {
   const usernameRef = useRef(null)
   const [form] = Form.useForm()
   const [open, setOpen] = useState(true)
@@ -84,6 +85,6 @@ const UsernameModal = () => {
       </Form>
     </Modal>
   )
-}
+})
 
 export default UsernameModal

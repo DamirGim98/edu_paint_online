@@ -4,15 +4,18 @@ import Canvas from '../components/Canvas'
 import Chat from '../components/Chat'
 
 import '../styles/app.scss'
+import Notifications from '../components/Notifications'
 
 const CanvasPage = () => {
   return (
     <div className="App">
-      <Toolbar />
-      <div className="wrapper">
-        <Canvas />
-        <Chat />
-      </div>
+      <Notifications>
+        <Toolbar />
+        <div className="wrapper">
+          <Canvas />
+          <Chat />
+        </div>
+      </Notifications>
     </div>
   )
 }
