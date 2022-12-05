@@ -14,9 +14,13 @@ const SendMessageForm = () => {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!text) {
+      return
+    }
     let time = new Date()
     time = `${time.getHours()}:${addZero(time.getMinutes())}`
-    e.preventDefault()
+
     WebSocketApi.getSocket.send(
       JSON.stringify({
         method: 'text',

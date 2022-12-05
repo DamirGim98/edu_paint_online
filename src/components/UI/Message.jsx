@@ -5,8 +5,11 @@ import '../../styles/message.scss'
 const Message = ({ message, username }) => {
   return (
     <div className={message.username === username ? `message` : `message-from`}>
-      {message.text}
-      <p className="message__time">{message.time}</p>
+      <div className="message__text">{message.text}</div>
+      <div className="message__stamp">
+        <p className="message__time">{message.time}</p>
+        <p className="message__name">{message.username}</p>
+      </div>
     </div>
   )
 }

@@ -7,22 +7,23 @@
   display: flex;
   flex-direction: column;
   border-bottom: none;
-
+  overflow: hidden;
   justify-content: center;
-  align-items: flex-start;
 
   &__messenger {
-    padding: 0 10px 45px 10px;
-    height: 600px;
+    padding: 10px 10px 0 10px;
+    height: 560px;
     width: 100%;
     background-color: rgba(24,25,29,255);
-    border-radius: 0 0 20px 20px;
 
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    overflow-y: scroll;
   }
 }
 
+.chat__messenger::-webkit-scrollbar {
+  display: none;
+}

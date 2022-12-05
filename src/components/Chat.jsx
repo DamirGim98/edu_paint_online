@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import '../styles/chat.scss'
-import { v4 as uuid } from 'uuid'
 import { observer } from 'mobx-react-lite'
 import WebSocketApi from '../store/WebSocketApi'
 import SendMessageForm from './UI/SendMessageForm'
@@ -24,16 +23,12 @@ const Chat = observer(() => {
   return (
     <div className="chat">
       <div className="chat__messenger">
-        <div
-          style={{
-            height: `calc(100% - ${messages.length * 44}px)`,
-            width: '100%',
-          }}
-        />
-        {messages.map((message) => (
-          <Message username={username} message={message} key={`${uuid()}`} />
+        {messages.map((message, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Message username={username} message={message} key={index} />
         ))}
       </div>
+
       <SendMessageForm />
     </div>
   )
