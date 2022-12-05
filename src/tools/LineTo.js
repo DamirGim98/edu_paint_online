@@ -74,8 +74,8 @@ export default class LineTo extends Tool {
     ctx.fillStyle = color
     ctx.strokeStyle = color
     ctx.lineWidth = width
-    ctx.moveTo(startX, startY)
     ctx.beginPath()
+    ctx.moveTo(startX, startY)
     ctx.lineTo(x, y)
     ctx.stroke()
     ctx.fillStyle = prevColor
