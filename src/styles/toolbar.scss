@@ -24,11 +24,11 @@
     &:hover, &:active {
       transition: 0.5s;
       transform: scale(1.2);
-      color: darkgoldenrod;
+      color: $toolbar-selected-item-color;
     }
 
     &.pressed {
-      color: darkgoldenrod;
+      color: $toolbar-selected-item-color;
     }
   }
 

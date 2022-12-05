@@ -1,3 +1,5 @@
+@import "./variables";
+
 .message {
   display: flex;
   flex-direction: column;
@@ -9,7 +11,7 @@
   max-width: 70%;
   min-width: 25%;
   padding: 10px 10px 10px 10px;
-  background-color: rgba(42,47,51,255);
+  background-color: $message-color;
 
   animation: messageTo 1s ease 0s 1 normal both;
 
@@ -21,7 +23,7 @@
     animation: messageFrom 1s ease 0s 1 normal both;
     margin-left: unset;
     margin-right: auto;
-    background-color: rgba(51,57,63,255);
+    background-color: $message-from-color;
     border-radius: 20px 20px 20px 0;
   }
   &__text {
