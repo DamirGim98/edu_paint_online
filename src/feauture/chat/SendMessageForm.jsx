@@ -1,46 +1,24 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import { SendOutlined } from '@ant-design/icons'
-import WebSocketApi from '../../api/WebSocketApi'
 import '../../styles/sendMessage.scss'
+import MessagesController from './MessagesController'
 
 const SendMessageForm = () => {
-  const [text, setText] = useState('')
-
-  const addZero = (i) => {
-    if (i < 10) {
-      return `0${i}`
-    }
-    return i
-  }
+  const inputRef = useRef(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const text = inputRef.current.value
     if (!text) {
       return
     }
-    let time = new Date()
-    time = `${time.getHours()}:${addZero(time.getMinutes())}`
-
-    WebSocketApi.getSocket.send(
-      JSON.stringify({
-        method: 'text',
-        id: WebSocketApi.getSessionId,
-        username: WebSocketApi.getUsername,
-        text,
-        time,
-      })
-    )
-    setText('')
+    MessagesController.sendWebsocketMessage({ text, method: 'text' })
+    inputRef.current.value = ''
   }
 
   return (
     <form className="controls" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={text}
-        className="controls__input"
-        onChange={(e) => setText(e.target.value)}
-      />
+      <input ref={inputRef} type="text" className="controls__input" />
       {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
       <button onClick={handleSubmit} type="submit" className="controls__button">
         <SendOutlined />

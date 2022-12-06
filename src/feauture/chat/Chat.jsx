@@ -1,35 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import '../../styles/chat.scss'
 import { observer } from 'mobx-react-lite'
-import WebSocketApi from '../../api/WebSocketApi'
+import MessagesStore from './MessagesStore'
 import SendMessageForm from './SendMessageForm'
 import Message from './Message'
+import MessagesController from './MessagesController'
+import UserStore from './UserStore'
 import useChatScroll from '../../hooks/useChatScroll'
 
 const Chat = observer(() => {
-  const [messages, setMessages] = useState([])
-  const username = WebSocketApi.getUsername
-  const ref = useChatScroll(messages)
+  const username = UserStore.getUsername
+  const messages = MessagesStore.getList
+  const chatRef = useChatScroll(messages.length)
 
-  WebSocketApi.getSocket.addEventListener('message', (event) => {
-    const msg = JSON.parse(event.data)
-    switch (msg.method) {
-      case 'text':
-        setMessages([...messages, msg])
-        break
-      default:
-        break
-    }
-  })
+  useEffect(() => {
+    const unsubscribe = MessagesController.subscribeForMessages()
+
+    return () => unsubscribe()
+  }, [])
 
   return (
     <div className="chat">
-      <div ref={ref} className="chat__messenger">
-        {messages.map((message) => (
+      <div ref={chatRef} className="chat__messenger">
+        {messages.map((message, index) => (
           <Message
             username={username}
             message={message}
-            key={message.text + message.time}
+            /* eslint-disable-next-line react/no-array-index-key */
+            key={index}
           />
         ))}
       </div>

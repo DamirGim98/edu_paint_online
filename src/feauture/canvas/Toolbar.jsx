@@ -11,7 +11,6 @@ import {
 } from '@ant-design/icons'
 
 import { v4 as uuid } from 'uuid'
-
 import toolCreators from '../../helpers/toolCreators'
 
 import '../../styles/toolbar.scss'
@@ -20,7 +19,6 @@ import WidthSlider from './UI/WidthSlider'
 import toolState from './toolState'
 import canvasState from './canvasState'
 import CopyToClipboard from './UI/CopyToClipboard'
-import WebSocketApi from '../../api/WebSocketApi'
 
 const Icons = [
   <EditOutlined />,
@@ -72,7 +70,7 @@ const Toolbar = () => {
       />
       <WidthSlider />
       <div className="toolbar__divider" />
-      {!WebSocketApi.getGuest && <CopyToClipboard />}
+      <CopyToClipboard />
       <UndoOutlined
         onClick={() => canvasState.undo()}
         className="toolbar__btn"

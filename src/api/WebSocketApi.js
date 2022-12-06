@@ -1,47 +1,51 @@
 import { makeAutoObservable } from 'mobx'
 
 class WebSocketApi {
-  socket = null
-
-  username = null
-
-  sessionId = null
-
-  guest = false
-
-  set setGuest(boolean) {
-    this.guest = boolean
+  constructor() {
+    makeAutoObservable(this)
   }
 
-  get getGuest() {
-    return this.guest
+  socket = null
+
+  subscribers = []
+
+  socketReady = 'idle'
+
+  messageHandler = (event) => {
+    this.subscribers.forEach((s) => s(event))
+  }
+
+  handleSocketError = () => {
+    this.socketReady = 'error'
+  }
+
+  handleSocketState = () => {
+    this.socketReady = 'ready'
+  }
+
+  createSocket() {
+    if (!this.socket) {
+      this.socket = new WebSocket(process.env.REACT_APP_URL)
+      this.socket.addEventListener('open', this.handleSocketState)
+      this.socket.addEventListener('error', this.handleSocketError)
+      this.socket.addEventListener('message', this.messageHandler)
+    }
   }
 
   get getSocket() {
-    if (!this.socket) {
-      this.socket = new WebSocket(process.env.REACT_APP_URL)
-    }
     return this.socket
   }
 
-  set setSessionId(id) {
-    this.sessionId = id
+  subscribe(callback) {
+    this.subscribers.push(callback)
+
+    return () => {
+      this.subscribers = this.subscribers.filter((s) => s !== callback)
+    }
   }
 
-  get getSessionId() {
-    return this.sessionId
-  }
-
-  set setUsername(name) {
-    this.username = name
-  }
-
-  get getUsername() {
-    return this.username
-  }
-
-  constructor() {
-    makeAutoObservable(this)
+  sendMessage(message) {
+    this.getSocket.send(message)
   }
 }
 
