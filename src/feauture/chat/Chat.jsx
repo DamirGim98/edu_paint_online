@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../styles/chat.scss'
 import { observer } from 'mobx-react-lite'
-import WebSocketApi from '../../store/WebSocketApi'
+import WebSocketApi from '../../api/WebSocketApi'
 import SendMessageForm from './SendMessageForm'
 import Message from './Message'
 import useChatScroll from '../../hooks/useChatScroll'
@@ -25,9 +25,12 @@ const Chat = observer(() => {
   return (
     <div className="chat">
       <div ref={ref} className="chat__messenger">
-        {messages.map((message, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Message username={username} message={message} key={index} />
+        {messages.map((message) => (
+          <Message
+            username={username}
+            message={message}
+            key={message.text + message.time}
+          />
         ))}
       </div>
 

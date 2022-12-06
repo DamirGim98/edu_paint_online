@@ -3,7 +3,7 @@ import { notification } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
 import { observer } from 'mobx-react-lite'
 import PropTypes from 'prop-types'
-import WebSocketApi from '../store/WebSocketApi'
+import WebSocketApi from '../api/WebSocketApi'
 
 const Notifications = observer(({ children }) => {
   const [api, contextHolder] = notification.useNotification()

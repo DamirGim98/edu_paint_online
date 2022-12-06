@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SendOutlined } from '@ant-design/icons'
-import WebSocketApi from '../../store/WebSocketApi'
+import WebSocketApi from '../../api/WebSocketApi'
 import '../../styles/sendMessage.scss'
 
 const SendMessageForm = () => {

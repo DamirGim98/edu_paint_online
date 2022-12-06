@@ -5,22 +5,18 @@ class MessagesStore {
     makeAutoObservable(this)
   }
 
-  List = {
-    messages: [],
-  }
+  list = []
 
   get getList() {
-    return Array.isArray(this.messagesList.messages)
-      ? this.messagesList.messages
-      : []
+    return Array.isArray(this.list) ? this.list : []
   }
 
   set setList(list) {
-    this.messagesList = list
+    this.list = list
   }
 
   addToList(item) {
-    this.List.push(item)
+    this.list.push(item)
   }
 }
 

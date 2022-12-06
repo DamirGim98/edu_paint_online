@@ -20,7 +20,7 @@ import WidthSlider from './UI/WidthSlider'
 import toolState from './toolState'
 import canvasState from './canvasState'
 import CopyToClipboard from './UI/CopyToClipboard'
-import WebSocketApi from '../../store/WebSocketApi'
+import WebSocketApi from '../../api/WebSocketApi'
 
 const Icons = [
   <EditOutlined />,

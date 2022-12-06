@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import '../../styles/canvas.scss'
 import { observer } from 'mobx-react-lite'
-import WebSocketApi from '../../store/WebSocketApi'
+import WebSocketApi from '../../api/WebSocketApi'
 import canvasState from './canvasState'
 import toolState from './toolState'
 import Brush from './tools/Brush'
