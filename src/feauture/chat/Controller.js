@@ -1,7 +1,7 @@
-import MessagesStore from './chat/MessagesStore'
-import WebSocketApi from '../api/WebSocketApi'
-import UserStore from './chat/UserStore'
-import getTime from '../helpers/getTime'
+import MessagesStore from './MessagesStore'
+import WebSocketApi from '../../api/WebSocketApi'
+import UserStore from './UserStore'
+import getTime from '../../helpers/getTime'
 
 class Controller {
   constructor(msgStore, api, userStore) {

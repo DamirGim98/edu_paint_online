@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { Modal, Input, Form, Checkbox, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import Controller from '../../Controller'
+import Controller from '../../chat/Controller'
 
 const UsernameModal = observer(() => {
   const usernameRef = useRef(null)

@@ -5,7 +5,7 @@ import Chat from '../feauture/chat/Chat'
 
 import '../styles/app.scss'
 import Notifications from '../components/Notifications'
-import Controller from '../feauture/Controller'
+import Controller from '../feauture/chat/Controller'
 
 const CanvasPage = () => {
   useEffect(() => {

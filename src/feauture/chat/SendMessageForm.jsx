@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { SendOutlined } from '@ant-design/icons'
 import '../../styles/sendMessage.scss'
-import Controller from '../Controller'
+import Controller from './Controller'
 
 const SendMessageForm = () => {
   const inputRef = useRef(null)

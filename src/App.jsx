@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import CanvasPage from './pages/CanvasPage'
 import UsernameModal from './feauture/canvas/UI/UsernameModal'
-import MessagesController from './feauture/Controller'
+import MessagesController from './feauture/chat/Controller'
 
 const App = () => {
   useEffect(() => {
