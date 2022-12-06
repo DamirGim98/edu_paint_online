@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 import { InputNumber, Slider } from 'antd'
 
-import toolState from '../../store/toolState'
+import toolState from '../toolState'
 
-import '../../styles/slider.scss'
+import '../../../styles/slider.scss'
 
 const WidthSlider = () => {
   const [inputValue, setInputValue] = useState(1)

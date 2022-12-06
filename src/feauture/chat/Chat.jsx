@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import '../styles/chat.scss'
+import '../../styles/chat.scss'
 import { observer } from 'mobx-react-lite'
-import WebSocketApi from '../store/WebSocketApi'
-import SendMessageForm from './UI/SendMessageForm'
-import Message from './UI/Message'
-import useChatScroll from '../hooks/useChatScroll'
+import WebSocketApi from '../../store/WebSocketApi'
+import SendMessageForm from './SendMessageForm'
+import Message from './Message'
+import useChatScroll from '../../hooks/useChatScroll'
 
 const Chat = observer(() => {
   const [messages, setMessages] = useState([])

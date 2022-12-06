@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import '../../styles/copy.scss'
+import '../../../styles/copy.scss'
 import { CopyOutlined, CheckOutlined, ArrowUpOutlined } from '@ant-design/icons'
-import WebSocketApi from '../../store/WebSocketApi'
+import WebSocketApi from '../../../store/WebSocketApi'
 
 const CopyToClipboard = () => {
   const [isClicked, setIsClicked] = useState(false)

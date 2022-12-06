@@ -1,4 +1,4 @@
-import WebSocketApi from '../store/WebSocketApi'
+import WebSocketApi from '../../../store/WebSocketApi'
 
 export default class Tool {
   socket = WebSocketApi

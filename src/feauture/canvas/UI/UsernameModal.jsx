@@ -3,8 +3,8 @@ import { v4 as uuid } from 'uuid'
 import { Modal, Input, Form, Checkbox, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import WebSocketApi from '../../store/WebSocketApi'
-import Methods from '../../helpers/Connections'
+import WebSocketApi from '../../../store/WebSocketApi'
+import Methods from '../../../helpers/Connections'
 
 const UsernameModal = observer(() => {
   const usernameRef = useRef(null)

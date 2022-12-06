@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react'
-import '../styles/canvas.scss'
+import '../../styles/canvas.scss'
 import { observer } from 'mobx-react-lite'
-import WebSocketApi from '../store/WebSocketApi'
-import canvasState from '../store/canvasState'
-import toolState from '../store/toolState'
-import Brush from '../tools/Brush'
-import Rectangle from '../tools/Rectangle'
-import Eraser from '../tools/Eraser'
-import Circle from '../tools/Circle'
-import LineTo from '../tools/LineTo'
+import WebSocketApi from '../../store/WebSocketApi'
+import canvasState from './canvasState'
+import toolState from './toolState'
+import Brush from './tools/Brush'
+import Rectangle from './tools/Rectangle'
+import Eraser from './tools/Eraser'
+import Circle from './tools/Circle'
+import LineTo from './tools/LineTo'
 
 const Canvas = observer(() => {
   const canvasRef = useRef()

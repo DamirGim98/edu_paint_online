@@ -12,15 +12,15 @@ import {
 
 import { v4 as uuid } from 'uuid'
 
-import toolCreators from '../helpers/toolCreators'
+import toolCreators from '../../helpers/toolCreators'
 
-import '../styles/toolbar.scss'
+import '../../styles/toolbar.scss'
 import Button from './UI/Button'
 import WidthSlider from './UI/WidthSlider'
-import toolState from '../store/toolState'
-import canvasState from '../store/canvasState'
+import toolState from './toolState'
+import canvasState from './canvasState'
 import CopyToClipboard from './UI/CopyToClipboard'
-import WebSocketApi from '../store/WebSocketApi'
+import WebSocketApi from '../../store/WebSocketApi'
 
 const Icons = [
   <EditOutlined />,

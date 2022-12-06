@@ -1,7 +1,7 @@
 import React from 'react'
-import Toolbar from '../components/Toolbar'
-import Canvas from '../components/Canvas'
-import Chat from '../components/Chat'
+import Toolbar from '../feauture/canvas/Toolbar'
+import Canvas from '../feauture/canvas/Canvas'
+import Chat from '../feauture/chat/Chat'
 
 import '../styles/app.scss'
 import Notifications from '../components/Notifications'
