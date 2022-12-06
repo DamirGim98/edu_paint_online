@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { Modal, Input, Form, Checkbox, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import MessagesController from '../../chat/MessagesController'
+import Controller from '../../Controller'
 
 const UsernameModal = observer(() => {
   const usernameRef = useRef(null)
@@ -17,8 +17,8 @@ const UsernameModal = observer(() => {
 
     const sessionId = !isGuest ? uuid() : retrievedId
 
-    MessagesController.setCredentials({ username, isGuest, sessionId })
-    MessagesController.sendWebsocketMessage({
+    Controller.setCredentials({ username, isGuest, sessionId })
+    Controller.sendWebsocketMessage({
       method: 'connection',
     })
     navigate('canvas')

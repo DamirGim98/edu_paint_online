@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { notification } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
 import { observer } from 'mobx-react-lite'
 import PropTypes from 'prop-types'
-import WebSocketApi from '../api/WebSocketApi'
+import UserStore from '../feauture/chat/UserStore'
 
 const Notifications = observer(({ children }) => {
   const [api, contextHolder] = notification.useNotification()
-  const [message, setMessage] = useState('')
-  const socket = WebSocketApi.getSocket
-  const currentUser = WebSocketApi.getUsername
+  const currentUser = UserStore.getUsername
+  const notificationIncoming = UserStore.getNotification()
 
   const openNotification = (name) => {
     api.info({
@@ -21,15 +20,9 @@ const Notifications = observer(({ children }) => {
   }
 
   useEffect(() => {
-    if (message) openNotification(message)
-  }, [message])
-
-  socket.addEventListener('message', (event) => {
-    const msg = JSON.parse(event.data)
-    if (msg.method === 'connection' && msg.username !== currentUser) {
-      setMessage(msg.username)
-    }
-  })
+    if (notificationIncoming && currentUser !== notificationIncoming.username)
+      openNotification(notificationIncoming.username)
+  }, [notificationIncoming])
 
   return (
     <>

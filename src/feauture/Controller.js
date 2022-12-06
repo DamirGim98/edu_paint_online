@@ -1,9 +1,9 @@
-import MessagesStore from './MessagesStore'
-import WebSocketApi from '../../api/WebSocketApi'
-import UserStore from './UserStore'
-import getTime from '../../helpers/getTime'
+import MessagesStore from './chat/MessagesStore'
+import WebSocketApi from '../api/WebSocketApi'
+import UserStore from './chat/UserStore'
+import getTime from '../helpers/getTime'
 
-class MessagesController {
+class Controller {
   constructor(msgStore, api, userStore) {
     this._messagesStore = msgStore
     this._api = api
@@ -42,6 +42,9 @@ class MessagesController {
       case 'text':
         this.messageStore.addToList(msg)
         break
+      case 'connection':
+        this.userStore.addNotification(msg)
+        break
       default:
         break
     }
@@ -63,4 +66,4 @@ class MessagesController {
   }
 }
 
-export default new MessagesController(MessagesStore, WebSocketApi, UserStore)
+export default new Controller(MessagesStore, WebSocketApi, UserStore)

@@ -11,6 +11,8 @@ class UserStore {
 
   guest = false
 
+  notification = null
+
   set setGuest(boolean) {
     this.guest = boolean
   }
@@ -33,6 +35,14 @@ class UserStore {
 
   get getUsername() {
     return this.username
+  }
+
+  addNotification(item) {
+    this.notification = item
+  }
+
+  getNotification() {
+    return this.notification
   }
 }
 

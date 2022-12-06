@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import '../../styles/chat.scss'
 import { observer } from 'mobx-react-lite'
 import MessagesStore from './MessagesStore'
 import SendMessageForm from './SendMessageForm'
 import Message from './Message'
-import MessagesController from './MessagesController'
 import UserStore from './UserStore'
 import useChatScroll from '../../hooks/useChatScroll'
 
@@ -12,12 +11,6 @@ const Chat = observer(() => {
   const username = UserStore.getUsername
   const messages = MessagesStore.getList
   const chatRef = useChatScroll(messages.length)
-
-  useEffect(() => {
-    const unsubscribe = MessagesController.subscribeForMessages()
-
-    return () => unsubscribe()
-  }, [])
 
   return (
     <div className="chat">

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { SendOutlined } from '@ant-design/icons'
 import '../../styles/sendMessage.scss'
-import MessagesController from './MessagesController'
+import Controller from '../Controller'
 
 const SendMessageForm = () => {
   const inputRef = useRef(null)
@@ -12,7 +12,7 @@ const SendMessageForm = () => {
     if (!text) {
       return
     }
-    MessagesController.sendWebsocketMessage({ text, method: 'text' })
+    Controller.sendWebsocketMessage({ text, method: 'text' })
     inputRef.current.value = ''
   }
 
