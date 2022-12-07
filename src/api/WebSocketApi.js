@@ -22,7 +22,12 @@ class WebSocketApi {
   }
 
   messageHandler = (event) => {
-    this.subscribers.forEach((s) => s(event))
+    const msg = JSON.parse(event.data)
+    if (msg === 'ping') {
+      this.pong()
+    } else {
+      this.subscribers.forEach((s) => s(event))
+    }
   }
 
   closeHandler = () => {
@@ -71,6 +76,19 @@ class WebSocketApi {
 
   sendMessage(message) {
     this.getSocket.send(message)
+  }
+
+  pong = () => {
+    this.heartbeat(10000)
+    this.sendMessage(JSON.stringify({ method: 'pong' }))
+  }
+
+  heartbeat = (delay) => {
+    clearTimeout(this.socket.pingTimeout)
+
+    this.socket.pingTimeout = setTimeout(() => {
+      this.closeHandler()
+    }, delay)
   }
 }
 
