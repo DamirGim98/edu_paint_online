@@ -1,0 +1,69 @@
+@import "./variables";
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+  margin-bottom: 6px;
+  height: fit-content;
+  width: fit-content;
+  max-width: 70%;
+  min-width: 25%;
+  padding: 10px 10px 10px 10px;
+  background-color: $message-color;
+
+  animation: messageTo 1s ease 0s 1 normal both;
+
+  color: white;
+  border-radius: 20px 15px 0 20px;
+
+  &-from {
+    @extend .message;
+    animation: messageFrom 1s ease 0s 1 normal both;
+    margin-left: unset;
+    margin-right: auto;
+    background-color: $message-from-color;
+    border-radius: 20px 20px 20px 0;
+  }
+  &__text {
+    width: 100%;
+    padding-right: 20px;
+    word-wrap: break-word;
+  }
+
+  &__stamp {
+    align-self: end;
+    display: flex;
+    gap: 5px;
+  }
+  
+  &__time, &__name {
+    font-size: 9px;
+    color: white;
+  }
+}
+
+@keyframes messageTo {
+  0% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes messageFrom {
+  0% {
+    opacity: 0;
+    transform: translateX(-250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

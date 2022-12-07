@@ -1,0 +1,32 @@
+@import "./variables";
+
+.chat {
+  position: relative;
+  height: 600px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: none;
+  overflow: hidden;
+  justify-content: center;
+
+  &__messenger {
+    padding: 10px 10px 0 10px;
+    height: 560px;
+    width: 100%;
+    background-color: $chat-background-color;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: scroll;
+
+    & > :first-child {
+      margin-top: auto;
+    }
+  }
+}
+
+.chat__messenger::-webkit-scrollbar {
+  display: none;
+}
