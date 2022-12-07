@@ -1,17 +1,11 @@
-import toolState from '../store/toolState'
-import Brush from '../tools/Brush'
-import canvasState from '../store/canvasState'
-import Rectangle from '../tools/Rectangle'
-import LineTo from '../tools/LineTo'
-import Circle from '../tools/Circle'
-import Eraser from '../tools/Eraser'
+import Controller from '../feauture/canvas/Controller'
 
 const ToolCreators = [
-  () => toolState.setTool(new Brush(canvasState.canvas)),
-  () => toolState.setTool(new Rectangle(canvasState.canvas)),
-  () => toolState.setTool(new LineTo(canvasState.canvas)),
-  () => toolState.setTool(new Circle(canvasState.canvas)),
-  () => toolState.setTool(new Eraser(canvasState.canvas)),
+  () => Controller.setDrawingTool('Brush'),
+  () => Controller.setDrawingTool('Rectangle'),
+  () => Controller.setDrawingTool('LineTo'),
+  () => Controller.setDrawingTool('Circle'),
+  () => Controller.setDrawingTool('Eraser'),
 ]
 
 export default ToolCreators

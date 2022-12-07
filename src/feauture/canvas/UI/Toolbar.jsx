@@ -11,16 +11,14 @@ import {
 } from '@ant-design/icons'
 
 import { v4 as uuid } from 'uuid'
+import toolCreators from '../../../helpers/toolCreators'
 
-import toolCreators from '../helpers/toolCreators'
-
-import '../styles/toolbar.scss'
-import Button from './UI/Button'
-import WidthSlider from './UI/WidthSlider'
-import toolState from '../store/toolState'
-import canvasState from '../store/canvasState'
-import CopyToClipboard from './UI/CopyToClipboard'
-import WebSocketApi from '../store/WebSocketApi'
+import '../../../styles/toolbar.scss'
+import Button from './Button'
+import WidthSlider from './WidthSlider'
+import canvasState from '../canvasState'
+import CopyToClipboard from './CopyToClipboard'
+import Controller from '../Controller'
 
 const Icons = [
   <EditOutlined />,
@@ -38,8 +36,7 @@ const Toolbar = () => {
   }
 
   const handleColorChange = (event) => {
-    toolState.setFillColor(event.target.value)
-    toolState.setStrokeColor(event.target.value)
+    Controller.setDrawingColors(event.target.value)
   }
 
   const downloadImage = () => {
@@ -72,13 +69,13 @@ const Toolbar = () => {
       />
       <WidthSlider />
       <div className="toolbar__divider" />
-      {!WebSocketApi.getGuest && <CopyToClipboard />}
+      <CopyToClipboard />
       <UndoOutlined
-        onClick={() => canvasState.undo()}
+        onClick={() => Controller.undoAction()}
         className="toolbar__btn"
       />
       <RedoOutlined
-        onClick={() => canvasState.redo()}
+        onClick={() => Controller.redoAction()}
         className="toolbar__btn"
       />
       <SaveOutlined onClick={downloadImage} className="toolbar__btn" />

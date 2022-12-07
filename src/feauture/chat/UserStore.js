@@ -1,7 +1,9 @@
 import { makeAutoObservable } from 'mobx'
 
-class WebSocketApi {
-  socket = null
+class UserStore {
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   username = null
 
@@ -9,19 +11,14 @@ class WebSocketApi {
 
   guest = false
 
+  notification = null
+
   set setGuest(boolean) {
     this.guest = boolean
   }
 
   get getGuest() {
     return this.guest
-  }
-
-  get getSocket() {
-    if (!this.socket) {
-      this.socket = new WebSocket(process.env.REACT_APP_URL)
-    }
-    return this.socket
   }
 
   set setSessionId(id) {
@@ -40,9 +37,13 @@ class WebSocketApi {
     return this.username
   }
 
-  constructor() {
-    makeAutoObservable(this)
+  addNotification(item) {
+    this.notification = item
+  }
+
+  get getNotification() {
+    return this.notification
   }
 }
 
-export default new WebSocketApi()
+export default new UserStore()

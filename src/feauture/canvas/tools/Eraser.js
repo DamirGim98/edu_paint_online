@@ -8,11 +8,10 @@ export default class Eraser extends Brush {
 
   mouseMoveHandler(e) {
     if (this.mouseDown) {
-      // this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
-      this.socket.getSocket.send(
+      this.socket.sendMessage(
         JSON.stringify({
           method: 'draw',
-          id: this.socket.getSessionId,
+          id: this.userStore.getSessionId,
           figure: {
             type: 'eraser',
             x: e.pageX - e.target.offsetLeft,
@@ -26,9 +25,9 @@ export default class Eraser extends Brush {
 
   static draw(ctx, x, y, color, width) {
     const prevWidth = ctx.lineWidth
-    ctx.fillStyle('white')
-    ctx.strokeStyle('white')
-    ctx.lineWidth(width)
+    ctx.fillStyle = 'white'
+    ctx.strokeStyle = 'white'
+    ctx.lineWidth = width
     ctx.lineTo(x, y)
     ctx.stroke()
     ctx.lineWidth = prevWidth
