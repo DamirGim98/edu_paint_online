@@ -17,7 +17,7 @@ class WebSocketApi {
     return this.socketStatus
   }
 
-  set socketState(state) {
+  setSocketState(state) {
     this.socketStatus = state
   }
 
@@ -26,19 +26,23 @@ class WebSocketApi {
   }
 
   closeHandler = () => {
+    this.setSocketState('error')
     this.closeSubscribers.forEach((s) => s())
-  }
-
-  handleSocketState = () => {
-    this.socketState = 'ready'
   }
 
   createSocket() {
     if (!this.socket) {
       this.socket = new WebSocket(process.env.REACT_APP_URL)
-      this.socket.addEventListener('open', this.handleSocketState)
+      this.socket.addEventListener(
+        'open',
+        this.setSocketState.bind(this, 'ready')
+      )
       this.socket.addEventListener('message', this.messageHandler)
       this.socket.addEventListener('close', this.closeHandler)
+      this.socket.addEventListener(
+        'error',
+        this.setSocketState.bind(this, 'error')
+      )
     }
   }
 
