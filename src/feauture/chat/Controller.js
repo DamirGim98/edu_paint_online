@@ -36,6 +36,10 @@ class Controller {
     this.userStore.setSessionId = data.sessionId
   }
 
+  errorHandler = () => {
+    this.userStore.addNotification({ method: 'error' })
+  }
+
   messageHandler = (event) => {
     const msg = JSON.parse(event.data)
     switch (msg.method) {
@@ -48,6 +52,10 @@ class Controller {
       default:
         break
     }
+  }
+
+  listenForErrors() {
+    return this.api.subscribe(this.errorHandler, true)
   }
 
   subscribeForMessages() {

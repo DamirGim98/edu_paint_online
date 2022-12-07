@@ -14,6 +14,12 @@ const CanvasPage = () => {
     return () => unsubscribe()
   }, [])
 
+  useEffect(() => {
+    const unsubscribe = Controller.listenForErrors()
+
+    return () => unsubscribe()
+  }, [])
+
   return (
     <div className="App">
       <Notifications>

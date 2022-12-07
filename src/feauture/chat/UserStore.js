@@ -41,7 +41,7 @@ class UserStore {
     this.notification = item
   }
 
-  getNotification() {
+  get getNotification() {
     return this.notification
   }
 }
