@@ -14,10 +14,10 @@ export default class Brush extends Tool {
 
   mouseUpHandler() {
     this.mouseDown = false
-    this.socket.getSocket.send(
+    this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
-        id: this.socket.getSessionId,
+        id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
         },
@@ -33,11 +33,10 @@ export default class Brush extends Tool {
 
   mouseMoveHandler(e) {
     if (this.mouseDown) {
-      // this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
-      this.socket.getSocket.send(
+      this.socket.sendMessage(
         JSON.stringify({
           method: 'draw',
-          id: this.socket.getSessionId,
+          id: this.userStore.getSessionId,
           figure: {
             type: 'brush',
             x: e.pageX - e.target.offsetLeft,

@@ -14,10 +14,10 @@ export default class LineTo extends Tool {
 
   mouseUpHandler(e) {
     this.mouseDown = false
-    this.socket.getSocket.send(
+    this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
-        id: this.socket.getSessionId,
+        id: this.userStore.getSessionId,
         figure: {
           type: 'line',
           startX: this.startX,
@@ -29,10 +29,10 @@ export default class LineTo extends Tool {
         },
       })
     )
-    this.socket.getSocket.send(
+    this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
-        id: this.socket.getSessionId,
+        id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
         },

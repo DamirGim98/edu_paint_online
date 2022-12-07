@@ -1,7 +1,10 @@
 import WebSocketApi from '../../../api/WebSocketApi'
+import UserStore from '../../chat/UserStore'
 
 export default class Tool {
   socket = WebSocketApi
+
+  userStore = UserStore
 
   constructor(canvas) {
     this.canvas = canvas

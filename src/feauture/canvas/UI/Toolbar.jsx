@@ -11,14 +11,14 @@ import {
 } from '@ant-design/icons'
 
 import { v4 as uuid } from 'uuid'
-import toolCreators from '../../helpers/toolCreators'
+import toolCreators from '../../../helpers/toolCreators'
 
-import '../../styles/toolbar.scss'
-import Button from './UI/Button'
-import WidthSlider from './UI/WidthSlider'
-import toolState from './toolState'
-import canvasState from './canvasState'
-import CopyToClipboard from './UI/CopyToClipboard'
+import '../../../styles/toolbar.scss'
+import Button from './Button'
+import WidthSlider from './WidthSlider'
+import canvasState from '../canvasState'
+import CopyToClipboard from './CopyToClipboard'
+import Controller from '../Controller'
 
 const Icons = [
   <EditOutlined />,
@@ -36,8 +36,7 @@ const Toolbar = () => {
   }
 
   const handleColorChange = (event) => {
-    toolState.setFillColor(event.target.value)
-    toolState.setStrokeColor(event.target.value)
+    Controller.setDrawingColors(event.target.value)
   }
 
   const downloadImage = () => {

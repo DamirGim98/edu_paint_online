@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Toolbar from '../feauture/canvas/Toolbar'
+import Toolbar from '../feauture/canvas/UI/Toolbar'
 import Canvas from '../feauture/canvas/Canvas'
 import Chat from '../feauture/chat/Chat'
 

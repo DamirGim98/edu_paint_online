@@ -23,10 +23,10 @@ export default class Circle extends Tool {
 
   mouseUpHandler() {
     this.mouseDown = false
-    this.socket.getSocket.send(
+    this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
-        id: this.socket.getSessionId,
+        id: this.userStore.getSessionId,
         figure: {
           type: 'circle',
           x: this.startX,
@@ -40,10 +40,10 @@ export default class Circle extends Tool {
 
   mouseMoveHandler(e) {
     if (this.mouseDown) {
-      const curentX = e.pageX - e.target.offsetLeft
-      const curentY = e.pageY - e.target.offsetTop
-      const width = curentX - this.startX
-      const height = curentY - this.startY
+      const currentX = e.pageX - e.target.offsetLeft
+      const currentY = e.pageY - e.target.offsetTop
+      const width = currentX - this.startX
+      const height = currentY - this.startY
       this.r = Math.sqrt(width ** 2 + height ** 2)
       this.draw(this.startX, this.startY, this.r)
     }

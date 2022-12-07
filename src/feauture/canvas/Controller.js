@@ -31,8 +31,39 @@ class Controller {
     this.Tools.setTool(new Brush(reference))
   }
 
+  setDrawingTool(tool) {
+    switch (tool) {
+      case 'Brush':
+        this.Tools.setTool(new Brush(this.Canvas.getCanvas))
+        break
+      case 'Rectangle':
+        this.Tools.setTool(new Rectangle(this.Canvas.getCanvas))
+        break
+      case 'LineTo':
+        this.Tools.setTool(new LineTo(this.Canvas.getCanvas))
+        break
+      case 'Circle':
+        this.Tools.setTool(new Circle(this.Canvas.getCanvas))
+        break
+      case 'Eraser':
+        this.Tools.setTool(new Eraser(this.Canvas.getCanvas))
+        break
+      default:
+        break
+    }
+  }
+
+  setDrawingColors(color) {
+    this.Tools.setFillColor(color)
+    this.Tools.setStrokeColor(color)
+  }
+
+  setDrawingWidth(width) {
+    this.Tools.setLineWidth(width)
+  }
+
   subscribeForMessages() {
-    return this.api.subscribe(this.drawHandler)
+    return this.api.subscribe(this.drawHandler.bind(this))
   }
 
   drawHandler = (event) => {

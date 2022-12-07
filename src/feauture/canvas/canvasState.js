@@ -15,6 +15,10 @@ class CanvasState {
     this.canvas = canvas
   }
 
+  get getCanvas() {
+    return this.canvas
+  }
+
   get CanvasContext() {
     return this.canvas.getContext('2d')
   }

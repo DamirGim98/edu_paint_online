@@ -1,18 +1,12 @@
 import Brush from './Brush'
 
 export default class Eraser extends Brush {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(canvas) {
-    super(canvas)
-  }
-
   mouseMoveHandler(e) {
     if (this.mouseDown) {
-      // this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
-      this.socket.getSocket.send(
+      this.socket.sendMessage(
         JSON.stringify({
           method: 'draw',
-          id: this.socket.getSessionId,
+          id: this.userStore.getSessionId,
           figure: {
             type: 'eraser',
             x: e.pageX - e.target.offsetLeft,

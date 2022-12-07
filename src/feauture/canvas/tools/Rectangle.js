@@ -14,10 +14,10 @@ export default class Rectangle extends Tool {
 
   mouseUpHandler() {
     this.mouseDown = false
-    this.socket.getSocket.send(
+    this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
-        id: this.socket.getSessionId,
+        id: this.userStore.getSessionId,
         figure: {
           type: 'rectangle',
           x: this.startX,
@@ -31,7 +31,7 @@ export default class Rectangle extends Tool {
     this.socket.getSocket.send(
       JSON.stringify({
         method: 'draw',
-        id: this.socket.getSessionId,
+        id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
         },
