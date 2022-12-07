@@ -1,6 +1,7 @@
 import toolState from './toolState'
 import WebSocketApi from '../../api/WebSocketApi'
 import canvasState from './canvasState'
+import UserStore from '../chat/UserStore'
 import Brush from './tools/Brush'
 import Rectangle from './tools/Rectangle'
 import Eraser from './tools/Eraser'
@@ -29,6 +30,32 @@ class Controller {
   initializeCanvas(reference) {
     this.Canvas.setCanvas = reference
     this.Tools.setTool(new Brush(reference))
+  }
+
+  pushToUndo() {
+    this.Canvas.pushToUndo(this.Canvas.getCanvas.toDataURL())
+  }
+
+  undoAction() {
+    const msg = JSON.stringify({
+      method: 'draw',
+      figure: {
+        type: 'undo',
+      },
+      id: UserStore.getSessionId,
+    })
+    this.api.sendMessage(msg)
+  }
+
+  redoAction() {
+    const msg = JSON.stringify({
+      method: 'draw',
+      figure: {
+        type: 'redo',
+      },
+      id: UserStore.getSessionId,
+    })
+    this.api.sendMessage(msg)
   }
 
   setDrawingTool(tool) {
@@ -76,6 +103,7 @@ class Controller {
         Brush.draw(ctx, figure.x, figure.y, figure.color, figure.width)
         break
       case 'finish':
+        this.pushToUndo()
         ctx.beginPath()
         break
       case 'rectangle':
@@ -104,6 +132,12 @@ class Controller {
           figure.color,
           figure.width
         )
+        break
+      case 'undo':
+        this.Canvas.undo()
+        break
+      case 'redo':
+        this.Canvas.redo()
         break
       default:
         break

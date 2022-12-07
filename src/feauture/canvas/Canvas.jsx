@@ -6,8 +6,6 @@ import Controller from './Controller'
 const Canvas = observer(() => {
   const canvasRef = useRef()
 
-  const mouseDownHandler = () => {}
-
   useEffect(() => {
     Controller.initializeCanvas(canvasRef.current)
     const unsubscribe = Controller.subscribeForMessages()
@@ -17,12 +15,7 @@ const Canvas = observer(() => {
 
   return (
     <div className="canvas">
-      <canvas
-        onMouseDown={mouseDownHandler}
-        ref={canvasRef}
-        width={800}
-        height={600}
-      />
+      <canvas ref={canvasRef} width={800} height={600} />
     </div>
   )
 })

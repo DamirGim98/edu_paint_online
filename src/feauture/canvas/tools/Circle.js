@@ -36,6 +36,15 @@ export default class Circle extends Tool {
         },
       })
     )
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        id: this.userStore.getSessionId,
+        figure: {
+          type: 'finish',
+        },
+      })
+    )
   }
 
   mouseMoveHandler(e) {

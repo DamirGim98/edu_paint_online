@@ -71,11 +71,11 @@ const Toolbar = () => {
       <div className="toolbar__divider" />
       <CopyToClipboard />
       <UndoOutlined
-        onClick={() => canvasState.undo()}
+        onClick={() => Controller.undoAction()}
         className="toolbar__btn"
       />
       <RedoOutlined
-        onClick={() => canvasState.redo()}
+        onClick={() => Controller.redoAction()}
         className="toolbar__btn"
       />
       <SaveOutlined onClick={downloadImage} className="toolbar__btn" />
