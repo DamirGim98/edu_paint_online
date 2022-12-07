@@ -1,0 +1,31 @@
+@import "./variables";
+
+.reconnect {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  &__button {
+    outline: none;
+    border: none;
+    background: transparent;
+
+    color: white;
+
+    font-size: 16px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    &:focus, &:hover {
+      color: $send-button-color;
+    }
+  }
+}

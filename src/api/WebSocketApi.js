@@ -27,6 +27,7 @@ class WebSocketApi {
 
   closeHandler = () => {
     this.setSocketState('error')
+    this.socket = null
     this.closeSubscribers.forEach((s) => s())
   }
 
