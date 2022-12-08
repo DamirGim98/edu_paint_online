@@ -7,8 +7,18 @@ class CanvasState {
 
   redoList = []
 
+  isCanvasBlocked = false
+
   constructor() {
     makeAutoObservable(this)
+  }
+
+  set setCanvasState(boolean) {
+    this.isCanvasBlocked = boolean
+  }
+
+  get CanvasState() {
+    return this.isCanvasBlocked
   }
 
   set setCanvas(canvas) {

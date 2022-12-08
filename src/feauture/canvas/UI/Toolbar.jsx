@@ -4,13 +4,15 @@ import {
   BorderOutlined,
   UndoOutlined,
   RedoOutlined,
-  ClearOutlined,
   SaveOutlined,
   LineOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons'
 
 import { v4 as uuid } from 'uuid'
+
+import { ReactComponent as EraserIcon } from '../../../assets/EraserIcon.svg'
+
 import toolCreators from '../../../helpers/toolCreators'
 
 import '../../../styles/toolbar.scss'
@@ -25,7 +27,7 @@ const Icons = [
   <BorderOutlined />,
   <LineOutlined />,
   <PlusCircleOutlined />,
-  <ClearOutlined />,
+  <EraserIcon />,
 ]
 
 const Toolbar = () => {

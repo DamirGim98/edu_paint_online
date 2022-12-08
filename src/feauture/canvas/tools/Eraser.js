@@ -11,6 +11,7 @@ export default class Eraser extends Brush {
       this.socket.sendMessage(
         JSON.stringify({
           method: 'draw',
+          username: this.userStore.getUsername,
           id: this.userStore.getSessionId,
           figure: {
             type: 'eraser',
@@ -24,6 +25,7 @@ export default class Eraser extends Brush {
   }
 
   static draw(ctx, x, y, color, width) {
+    const prevColor = ctx.fillStyle
     const prevWidth = ctx.lineWidth
     ctx.fillStyle = 'white'
     ctx.strokeStyle = 'white'
@@ -31,5 +33,7 @@ export default class Eraser extends Brush {
     ctx.lineTo(x, y)
     ctx.stroke()
     ctx.lineWidth = prevWidth
+    ctx.fillStyle = prevColor
+    ctx.strokeStyle = prevColor
   }
 }

@@ -19,6 +19,13 @@ export default class Circle extends Tool {
     this.startX = e.pageX - e.target.offsetLeft
     this.startY = e.pageY - e.target.offsetTop
     this.saved = canvasData
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        username: this.userStore.getUsername,
+        id: this.userStore.getSessionId,
+      })
+    )
   }
 
   mouseUpHandler() {
@@ -27,6 +34,7 @@ export default class Circle extends Tool {
       JSON.stringify({
         method: 'draw',
         id: this.userStore.getSessionId,
+        username: this.userStore.getUsername,
         figure: {
           type: 'circle',
           x: this.startX,
@@ -39,6 +47,7 @@ export default class Circle extends Tool {
     this.socket.getSocket.send(
       JSON.stringify({
         method: 'draw',
+        username: this.userStore.getUsername,
         id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
