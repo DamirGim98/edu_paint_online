@@ -3,13 +3,32 @@
 .slider-wrapper {
   width: 25%;
   display: flex;
+  align-items: center;
 }
 
 .slider__selector {
   width: 100px;
 }
+.ant-slider-horizontal {
+  &:hover {
+    .ant-slider-rail {
+      background-color: gray;
+    }
+  }
+  .ant-slider-rail {
+    background-color: gray;
+    &:hover {
+      background-color: gray;
+    }
+  }
+}
 
 .slider__number {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   width: 40px;
   height: 30px;
 }

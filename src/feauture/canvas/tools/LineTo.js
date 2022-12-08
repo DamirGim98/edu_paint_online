@@ -17,6 +17,7 @@ export default class LineTo extends Tool {
     this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
+        username: this.userStore.getUsername,
         id: this.userStore.getSessionId,
         figure: {
           type: 'line',
@@ -32,6 +33,7 @@ export default class LineTo extends Tool {
     this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
+        username: this.userStore.getUsername,
         id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
@@ -45,6 +47,13 @@ export default class LineTo extends Tool {
     this.startX = e.pageX - e.target.offsetLeft
     this.startY = e.pageY - e.target.offsetTop
     this.saved = this.canvas.toDataURL()
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        username: this.userStore.getUsername,
+        id: this.userStore.getSessionId,
+      })
+    )
   }
 
   mouseMoveHandler(e) {

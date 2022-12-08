@@ -17,6 +17,7 @@ export default class Rectangle extends Tool {
     this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
+        username: this.userStore.getUsername,
         id: this.userStore.getSessionId,
         figure: {
           type: 'rectangle',
@@ -31,6 +32,7 @@ export default class Rectangle extends Tool {
     this.socket.getSocket.send(
       JSON.stringify({
         method: 'draw',
+        username: this.userStore.getUsername,
         id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
@@ -45,6 +47,13 @@ export default class Rectangle extends Tool {
     this.startX = e.pageX - e.target.offsetLeft
     this.startY = e.pageY - e.target.offsetTop
     this.saved = this.canvas.toDataURL()
+    this.socket.getSocket.send(
+      JSON.stringify({
+        method: 'draw',
+        username: this.userStore.getUsername,
+        id: this.userStore.getSessionId,
+      })
+    )
   }
 
   mouseMoveHandler(e) {

@@ -17,6 +17,7 @@ export default class Brush extends Tool {
     this.socket.sendMessage(
       JSON.stringify({
         method: 'draw',
+        username: this.userStore.getUsername,
         id: this.userStore.getSessionId,
         figure: {
           type: 'finish',
@@ -36,6 +37,7 @@ export default class Brush extends Tool {
       this.socket.sendMessage(
         JSON.stringify({
           method: 'draw',
+          username: this.userStore.getUsername,
           id: this.userStore.getSessionId,
           figure: {
             type: 'brush',
