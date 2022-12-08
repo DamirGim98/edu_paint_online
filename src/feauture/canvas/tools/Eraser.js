@@ -11,6 +11,7 @@ export default class Eraser extends Brush {
       this.socket.sendMessage(
         JSON.stringify({
           method: 'draw',
+          username: this.userStore.getUsername,
           id: this.userStore.getSessionId,
           figure: {
             type: 'eraser',

@@ -96,7 +96,12 @@ class Controller {
   drawHandler = (event) => {
     const ctx = this.Canvas.CanvasContext
     const msg = JSON.parse(event.data)
-    if (msg.method !== 'draw') return
+    if (msg.method !== 'draw') {
+      return
+    }
+    if (msg.username !== UserStore.getUsername) {
+      this.Canvas.setCanvasState = true
+    }
     const { figure } = msg
     switch (figure.type) {
       case 'brush':
@@ -105,6 +110,7 @@ class Controller {
       case 'finish':
         this.pushToUndo()
         ctx.beginPath()
+        this.Canvas.setCanvasState = false
         break
       case 'rectangle':
         Rectangle.staticDraw(
